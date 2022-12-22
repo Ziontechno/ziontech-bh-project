@@ -1,0 +1,68 @@
+1. Continues  integration Job:
+
+pipeline{
+  agent any
+  tools{
+    maven "maven3.8.4"
+  }
+  stages{
+    stage('Gitclone'){
+      steps{
+        sh  "echo clonig the latest application version"
+        git credentialsId: 'Githubcredentials ', url: 'https://github.com/Ziontechno/ziontech-bh-project'
+
+      }
+    }
+    stage('TestBuild'){
+      steps{
+        sh "echo running UnitTesting"
+        sh "echo UnitTesting ok. Creating packages"
+        sh "mvn clean package"
+        sh "echo Artifact created"
+      }
+    }
+    stage('CodeQuality'){
+      steps{
+        sh "echo Running CodeQuality report"
+        sh "mvn sonar:sonar" 
+      }
+    }
+    stage('UploadArtifact'){
+      steps{
+        sh "echo uploadartifact into nexus"
+        sh "mvn deploy"
+      }
+    }
+    
+stage('PreDeployment'){
+      steps{
+        sh "docker build -t zion-wep-app ."
+        //sh "docker login -u 120082"
+        sh "docker push 120082/zion-web-app"
+      }
+    }
+  }
+
+}
+
+2. Continues deployment job:
+deploy to Kubernetes
+
+pipeline{
+  agent any
+  stages{
+    
+    stage('deployment'){
+      steps{
+        sh "echo application ready for deloyment"
+        sh "helm install zion-app webapp" 
+      }
+    }
+    stage('monitoring'){
+      steps{
+        sh "echo deploying prometheus"
+      }
+    }
+
+  }
+}
