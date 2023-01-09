@@ -66,13 +66,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>zion-web-app repository</name>
-	      <url>http://54.162.20.32:8888/repository/zion-web-app-snapshot/</url>
+	      <url>http://172.31.69.131:8888/repository/zion-web-app-snapshot/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>zion-web-app repository</name>
-	      <url>http://54.162.20.32:8888/repository/zion-web-app-snapshot/</url>
+	      <url>http://172.31.69.131:8888/repository/zion-web-app-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
