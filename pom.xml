@@ -72,9 +72,9 @@
 	    </repository>
 	    
 	    <snapshotRepository>
-	      <id></id>
-	      <name></name>
-	      <url></url>
+	      <id>nexus</id>
+	      <name>zion-web-app repository</name>
+	      <url>http://54.162.20.32:8888/repository/zion-web-app-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
